@@ -103,3 +103,20 @@ let complex2: Complex = {
         return this.data;
     }
 }
+
+// union types - using the | pipe character we can define a variable that can be of more that one type
+let unionType: number | string = 15;
+unionType = 'some string';
+
+// the 'never' type - this function will never return anything.. or has an unreachable endpoint..
+function neverReturnsAnything(): never {
+    throw new Error('DANGER DANGER');
+}
+
+// nullable types
+// By default null and undefined are subtypes of all other types.
+// That means you can assign null and undefined to something like a number.
+let canBeNull = 12;
+canBeNull = null;
+let canAlsoBeNull;
+canAlsoBeNull = null;
