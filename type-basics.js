@@ -84,3 +84,18 @@ var complex2 = {
         return this.data;
     }
 };
+// union types - using the | pipe character we can define a variable that can be of more that one type
+var unionType = 15;
+unionType = 'some string';
+// the 'never' type - this function will never return anything.. or has an unreachable endpoint..
+function neverReturnsAnything() {
+    throw new Error('DANGER DANGER');
+}
+// nullable types
+// By default null and undefined are subtypes of all other types.
+// That means you can assign null and undefined to something like a number.
+// If we enable an option in the tsconfig 'strictnullchecks' you can no longer do this.
+var canBeNull = 12;
+// canBeNull = null; - ERROR b/c strict null checking is currently enabled!
+var canAlsoBeNull;
+canAlsoBeNull = null;

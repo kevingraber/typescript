@@ -116,7 +116,8 @@ function neverReturnsAnything(): never {
 // nullable types
 // By default null and undefined are subtypes of all other types.
 // That means you can assign null and undefined to something like a number.
+// If we enable an option in the tsconfig 'strictnullchecks' you can no longer do this.
 let canBeNull = 12;
-canBeNull = null;
+// canBeNull = null; - ERROR b/c strict null checking is currently enabled!
 let canAlsoBeNull;
 canAlsoBeNull = null;
