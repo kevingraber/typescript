@@ -44,9 +44,11 @@ class Kevin extends Person {
 const anotherPerson = new Kevin("Mizin");
 console.log(anotherPerson)
 
-// Getters and Setters
+// Getters and Setters && readonly
 class Plant {
     private _species: string = "Default";
+
+    public readonly color: string = "Green"; // - readonly properties can't be changed!
 
     get species(): string {
         return this._species;
@@ -68,6 +70,7 @@ plant.species = 'AB'
 console.log(plant.species)
 plant.species = 'Cactus'
 console.log(plant.species)
+// plant.color = 'Red'; - ERROR! readonly properties can't be re assigned!
 
 // Static Properties & Methods
 class Helpers {
@@ -106,3 +109,27 @@ let myProject = new ITProject();
 console.log(myProject);
 myProject.changeName('Doomsday Lazer');
 console.log(myProject);
+
+// Private Constructors..
+class OnlyOne {
+    // don't be fooled.. instance is just the name of the variable!
+    private static instance: OnlyOne;
+
+    private constructor(public name: string) {}
+
+    static getInstance() {
+        if (!OnlyOne.instance) {
+            OnlyOne.instance = new OnlyOne('The Only One!')
+        }
+        return OnlyOne.instance;
+    }
+}
+
+// let wrong = new OnlyOne('The Only One!'); - ERROR! constructor is private!
+let right = OnlyOne.getInstance();
+
+// readonly properties
+class SomeGuy {
+    public readonly name: string = "James";
+    public job: string = 'Dentist';
+}

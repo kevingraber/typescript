@@ -51,10 +51,11 @@ var Kevin = /** @class */ (function (_super) {
 }(Person));
 var anotherPerson = new Kevin("Mizin");
 console.log(anotherPerson);
-// Getters and Setters
+// Getters and Setters && readonly
 var Plant = /** @class */ (function () {
     function Plant() {
         this._species = "Default";
+        this.color = "Green"; // - readonly properties can't be changed!
     }
     Object.defineProperty(Plant.prototype, "species", {
         get: function () {
@@ -80,6 +81,7 @@ plant.species = 'AB';
 console.log(plant.species);
 plant.species = 'Cactus';
 console.log(plant.species);
+// plant.color = 'Red'; - ERROR! readonly properties can't be re assigned!
 // Static Properties & Methods
 var Helpers = /** @class */ (function () {
     function Helpers() {
@@ -119,3 +121,26 @@ var myProject = new ITProject();
 console.log(myProject);
 myProject.changeName('Doomsday Lazer');
 console.log(myProject);
+// Private Constructors..
+var OnlyOne = /** @class */ (function () {
+    function OnlyOne(name) {
+        this.name = name;
+    }
+    OnlyOne.getInstance = function () {
+        if (!OnlyOne.instance) {
+            OnlyOne.instance = new OnlyOne('The Only One!');
+        }
+        return OnlyOne.instance;
+    };
+    return OnlyOne;
+}());
+// let wrong = new OnlyOne('The Only One!'); - ERROR! constructor is private!
+var right = OnlyOne.getInstance();
+// readonly properties
+var SomeGuy = /** @class */ (function () {
+    function SomeGuy() {
+        this.name = "James";
+        this.job = 'Dentist';
+    }
+    return SomeGuy;
+}());
